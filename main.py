@@ -17,7 +17,7 @@ class MainHandler(webapp2.RequestHandler):
     def post(self):
         self.response.headers['Content-Type'] = "application/json"
         destination = self.request.get('destination')
-        user_id = self.request.get('user_id')
+        user_id = int(self.request.get('user_id'))
 	response = get_location_new(destination)
         lines = get_stops(response[0], response[1])
         store_user_destination(user_id=user_id, destination=destination, lines=lines)
